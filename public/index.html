@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="javascripts/libs/jquery-1.7.2.min.js"></script>
+        <script src="javascripts/libs/jquery-ui-1.8.22.custom.min.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/jquery-ui/jquery-ui-1.8.22.custom.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap-modal.js"></script>
+        <script src="javascripts/app.js"></script>
+        <title>Bookings</title>
+  
+
+
+    </head>
+    <body>
+        <div id="multimedia_booking">
+            <div id="overlayBooking" class="modal hide">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="icon-remove"></i></button>
+                    <h3 id="overlay_headline">Create new booking</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="well form-vertical">
+                        <fieldset>
+                            <div class="controls">
+                                <label class="control-label" for="roomField">Room</label><select id="roomField"></select>
+                                <label class="control-label" for="eventField">Event</label><input id="eventField" type="text">
+                                <label class="control-label" for="dateField">Date</label><input id="dateField" type="text">
+                                <label class="control-label" for="timeField">Start Time (HH:MM)</label>
+                                <form class="form-inline">
+                                    <fieldset>
+                                        <div class="controls">
+                                            <select class="span1" id="timeHour"></select>
+                                            <select class="span1" id="timeMinute"></select>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <label class="control-label" for="durationField">Duration (HH:MM)</label>
+                                <form class="form-inline">
+                                    <fieldset>
+                                        <div class="controls">
+                                            <select class="span1" id="durationHour"></select>
+                                            <select class="span1" id="durationMinute"></select>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <label class="control-label" for="descriptionField">Description</label><textarea id="descriptionField" rows="5"></textarea>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-danger" style="display: none;">Delete Booking</a>
+                    <a id="saveChanges" href="#" class="btn btn-success" data-bookingId="-1">Save Changes</a>
+                </div>
+            </div>
+            <div id="main">
+                <div id="messagefield">
+                    <div id="alert_success" class="alert alert-block alert-success" style="display: none;">
+                      <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
+                      <h4 class="alert-heading">Booking saved!</h4>
+                      <span id="message_success">Your booking has been saved! Enjoy...</span>
+                    </div>
+                    <div id="alert_error" class="alert alert-block alert-error" style="display: none;">
+                      <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
+                      <h4 class="alert-heading">An error occured!</h4>
+                      <span id="message_error">Your booking has been saved! Enjoy...</span>
+                    </div>
+                </div>
+                <div id="headline">
+                    <h2 class="monthheadline" style="display: inline-block;">August 2012</h2>
+                    <div class="changemonth">
+                        <a class="btn prevMonth" href="javascript:void(0);"><i class="icon-chevron-left"></i></a>
+                        <a class="btn nextMonth" href="javascript:void(0);"><i class="icon-chevron-right"></i></a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="controls">
+                        <select id="roomSelect">
+                            <option selected>All</option>
+                        </select>
+                        <a id="openbooking" class="btn btn-success" href="javascript:void(0);"><i class="icon-plus icon-white"></i> Add Booking</a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div id="calendar">
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Event</th>
+                                <th>Room</th>
+                                <th>More</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="footer">
+                    <div class="changemonth">
+                        <a class="btn prevMonth" href="javascript:void(0);"><i class="icon-chevron-left"></i></a>
+                        <a class="btn nextMonth" href="javascript:void(0);"><i class="icon-chevron-right"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            Wordpress <a href="http://www.github.com/dkundel/multimedia_booking" alt="Project @GitHub" target="_blank">Multimedia Booking</a> Plug-In<br>
+            By <a href="http://www.code-flow.de/" alt="Dominik Kundel @code-flow.de" target="_blank">Dominik Kundel</a> and <a href="http://george.flanche.net/" alt="George Merticariu @flanche.net" target="_blank">George Merticariu</a>
+        </footer>
+    </body>
+</html>
