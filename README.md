@@ -14,7 +14,7 @@ The plug-in is designed to be easy to use and requires currently only four easy 
 For this you can use the way that is described at [css-tricks.com](http://css-tricks.com/snippets/wordpress/include-jquery-in-wordpress-theme/) by just including:
 
 Just copy the following code into the functions.php file of your theme.
-```php
+```ruby
 if (!is_admin()) add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
 function my_jquery_enqueue() {
     wp_deregister_script('jquery');
@@ -30,5 +30,5 @@ Go in your administration panel and activate the Multimedia Booking Plug-In.
 The necessary table for the bookings will be created then automatically.
 ###4) Include the plug-in in your page
 Just go into the editor of the page you would like to have the plug-in in and add the following shortcode:
-    [multimediaBooking]
+`[multimediaBooking]`
 Afterwards publish the page and you will be able to see the plug-in.
