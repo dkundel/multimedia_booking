@@ -10,7 +10,3 @@ Back End:
 - include status messages such as [[400]] => successful
 								  [[500]] => failure
   as i did in the mb_updateBooking
-
-Front End:
-----------
-- events that are in two days that are directly after each other the row for the second day is skipped

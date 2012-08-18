@@ -10,7 +10,7 @@ if ($_GET['function']) {
     if (function_exists($function)) {
         $function();
     } else {
-        echo json_encode("Function does not exist");
+        echo json_encode("[[500]] Function does not exist");
         exit;
     }
 } else {
@@ -23,7 +23,7 @@ function mb_getMonthEvents() {
     $year = $_POST['year'];
     $bookings = Booking::getMonthEvents($month, $year);
     if(!$bookings){
-            echo json_encode('No bookings for this month');
+            echo json_encode('[[500]] No bookings for this month');
             exit;
         }
     echo json_encode($bookings);
@@ -37,11 +37,11 @@ function mb_deleteBooking() {
         $booking->delete();
     } catch (Exception $e) {
         if ($e->getMessage()) {
-            echo json_encode($e->getMessage());
+            echo json_encode('[[500]]'.$e->getMessage());
             exit;
         }
     }
-    echo json_encode('Booking deleted');
+    echo json_encode('[[400]] Booking deleted');
     exit;
 }
 
@@ -76,7 +76,7 @@ function mb_getUserBookings() {
         $bookings = Booking::getUserBookings($month, $year);
 
     } catch (Exception $e) {
-        $bookings = $e->getMessage();
+        $bookings = '[[500]]'.$e->getMessage();
     }
     echo json_encode($bookings);
     exit;
