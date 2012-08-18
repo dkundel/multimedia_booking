@@ -22,6 +22,11 @@
                     <h3 id="overlay_headline">Create new booking</h3>
                 </div>
                 <div class="modal-body">
+                    <div id="booking_message" class="alert alert-block alert-error" style="display: none;">
+                      <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
+                      <h4 class="alert-heading">An error occured!</h4>
+                      <span>Please fill all fields!</span>
+                    </div>
                     <form class="well form-vertical">
                         <fieldset>
                             <div class="controls">
@@ -53,7 +58,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn" data-dismiss="modal">Close</a>
-                    <a href="#" class="btn btn-danger" style="display: none;">Delete Booking</a>
+                    <a id="deleteBookingButton" href="#" class="btn btn-danger" style="display: none;">Delete Booking</a>
                     <a id="saveChanges" href="#" class="btn btn-success" data-bookingId="-1">Save Changes</a>
                 </div>
             </div>
@@ -67,7 +72,7 @@
                     <div id="alert_error" class="alert alert-block alert-error" style="display: none;">
                       <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
                       <h4 class="alert-heading">An error occured!</h4>
-                      <span id="message_error">Your booking has been saved! Enjoy...</span>
+                      <span id="message_error"></span>
                     </div>
                 </div>
                 <div id="headline">
