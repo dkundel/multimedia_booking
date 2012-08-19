@@ -21,16 +21,14 @@ h2 {
 }
 
 
-#openbooking {
-    float: right;
-}
 
 #footer, #messagefield, #headline, #calendar {
     width: 450px
 }
 
 .monthheadline{
-    line-height: 24px;
+    line-height: 30px;
+    font-size: 30px;
     color: #666;
     text-shadow: 0px 2px 0px #fff;
 }
@@ -49,6 +47,12 @@ h2 {
 
 #main_booking a:hover, #main_booking a:active, #main_booking a:focus {
     color: darkgreen;
+}
+
+
+a#openbooking, a#openbooking:focus, a#openbooking:hover, a#openbooking:visited {
+    float: right;
+    color: #fff;
 }
 
 

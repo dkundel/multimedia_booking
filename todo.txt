@@ -1,12 +1,2 @@
 To-Do:
 ======
-
-Back End:
----------
-- request to getUserBookings function returns empty array
-- events that are updated are get a new entry instead of being updated
-- error when creating a new booking -> line 106 in Booking.php --> foreach loop gets invalid arguments --> corrolation with other bookings is not checked
-- when creating a new booking it is not checked if i enter an event name
-- include status messages such as [[400]] => successful
-								  [[500]] => failure
-  as i did in the mb_updateBooking

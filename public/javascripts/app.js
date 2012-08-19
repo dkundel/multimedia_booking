@@ -229,7 +229,7 @@
 	function displayEventsMonth(dataStr){
 		BOOKINGS.data = JSON.parse(dataStr);
 
-		if(BOOKINGS.data == "No bookings for this month"){
+		if(BOOKINGS.data == "[[500]] No bookings for this month"){
 			BOOKINGS.data = [];
 		}
 
@@ -345,7 +345,7 @@
 		for(var idx=0; idx<data.length; idx++){
 		$(".booking_" + data[idx].id).each(function(){$(this).popover({
                 	title: data[idx].event,
-                	content: data[idx].description + "\n\nby" + data[idx].name,
+                	content: data[idx].description + "\n\nby " + data[idx].name,
                 	delay: 500,
                 	trigger: 'hover',
                 	placement: 'top'
@@ -357,6 +357,7 @@
 	*	requests the bookings of the currently logged in user
 	*/
 	function bookingsBelongingUser(){
+		console.error("bla");
 		$.post(REQUEST_URL + '?function=getUserBookings', {'month': MONTHS[CURRENTMONTH], 'year': CURRENTYEAR}, function(data){ enableEdit(data);});
 	};
 
@@ -367,18 +368,21 @@
 	function enableEdit(dataStr){
 		/**
 			TODO: REQUEST RETURNS EMPTY ARRAY!!!!
+
+		**/
 		
 		var data = JSON.parse(dataStr);
-		console.error(data);
-		**/
+	
 
-		var data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
-		var bookingId;
+		//var data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32];
+		//var bookingId;
+		console.error("foooo ");
 
 		for(var i=0; i<data.length; i++){
 			//console.error(data[i]);
 
-			bookingId = data[i];
+			bookingId = parseFloat(data[i].id);
+			console.error(bookingId);
 			var $editLink = $("<a href=\"javascript:void(0);\" alt=\"Edit..\" data-bookingId=\"" + bookingId + "\">Edit..</a>").click(showEditOverlay);
 			$(".booking_"+bookingId.toString()+" > td.edit_booking").html($editLink);
 		}
@@ -388,6 +392,24 @@
 	*	is called when the overlay is displayed. It either shows the delete button or resets the overlay
 	*/
 	function prepareOverlay(){
+		$("#roomContainer").removeClass("error");
+		$("#roomContainer span").hide();
+		$("#eventContainer").removeClass("error");
+		$("#eventContainer span").hide();
+		$("#dateContainer").removeClass("error");
+		$("#dateContainer span").hide();
+		$("#timeContainer").removeClass("error");
+		$("#timeContainer span").hide();
+		$("#durationContainer").removeClass("error");
+		$("#durationContainer span").hide();
+		$("#descriptionContainer").removeClass("error");
+		$("#descriptionContainer span").hide();
+
+
+
+
+
+
 		if($("#saveChanges").attr("data-bookingId") != "-1"){
 			$("#deleteBookingButton").show();
 		} else {
@@ -418,6 +440,7 @@
 	*	handles the response of the create function
 	*/
 	function showResponseCreate(response){
+		console.error(response);
 
 		if(response.indexOf("[[400]]")){
 			$("#alert_success h4").html("Booking created!");
@@ -479,8 +502,40 @@
 
 		var description = $("#descriptionField").val();
 
-		if (room == "" || newEvent == "" || date == "" || description == "" || (parseFloat(durationHour) == 0 && parseFloat(durationMin) == 0)){
-			$("#booking_message").show();
+		var emptyField = false;
+
+		if(room == ""){
+			$("#roomContainer").addClass("error");
+			$("#roomContainer span").show();
+			emptyField = true;
+		}
+
+		if(newEvent == ""){
+			$("#eventContainer").addClass("error");
+			$("#eventContainer span").show();
+			emptyField = true;
+		}
+
+		if(date == ""){
+			$("#dateContainer").addClass("error");
+			$("#dateContainer span").show();
+			emptyField = true;
+		}
+
+		if(description == ""){
+			$("#descriptionContainer").addClass("error");
+			$("#descriptionContainer span").show();
+			emptyField = true;
+		}
+
+		if(parseFloat(durationHour) == 0 && parseFloat(durationMin) == 0){
+			$("#durationContainer").addClass("error");
+			$("#durationContainer span").show();
+			emptyField = true;
+		}
+
+
+		if (emptyField){
 			return;
 		}
 
@@ -506,11 +561,11 @@
 
 		console.error(dataStr);
 
-		if(dataStr.indexOf("[[400]]")){
+		if(!dataStr.indexOf("[[400]]")){
 			$("#alert_success h4").html("Booking deleted!");
 			$("#alert_success span").html("Your booking has been deleted...");
 			$("#alert_success").show();
-		} else if(dataStr.indexOf("[[500]]")){
+		} else if(!dataStr.indexOf("[[500]]")){
 			$("#alert_error span").html(dataStr);
 			$("#alert_error").show();
 		}

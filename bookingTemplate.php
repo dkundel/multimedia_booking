@@ -22,6 +22,8 @@
 
 			jQuery(window).bind("sizeFrameChanged", function(){resizeFrame(document.getElementById("mp_frame"));});
 
+			window.location.hash = "";
+			
 			function resizeFrame(f){
 				f.style.height = "0px";
 				f.style.height = f.contentWindow.document.body.scrollHeight + "px";
