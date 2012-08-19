@@ -2,7 +2,7 @@
 
 /*
  * Plugin name: Multimedia booking
- * plugin URI: #
+ * plugin URI: http://github.com/dkundel/multimedia_booking
  * Descriptio: Plugin for booking the multimedia room 
  * Version: 1.0
  * Author: George Merticaiu and Dominik Kundel

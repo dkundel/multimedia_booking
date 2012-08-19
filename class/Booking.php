@@ -25,11 +25,12 @@ class Booking {
         if ($id) {
             $this->id = $id;
             $query = "SELECT `userId`,`room`, `event`, `date`,`time`,`duration`,`description` FROM " . BOOKING_TABLE_NAME . " WHERE `id`=" . (int) $id;
-            $params = $this->db->query($query);
+            $params = $this->db->get_results($query);
+
             if (!$params) {
                 throw new Exception('Invalid booking id');
             } else {
-                if ($params[0]->userId != $this->user->ID) {
+                if ($params[0]->userId != $this->user->ID && $this->user->roles[0] != 'administrator' ) {
                     throw new Exception('This booking belongs to other user');
                 }
                 $this->setParameters($params[0]);
@@ -101,7 +102,7 @@ class Booking {
 
     public function validTime($room, $date, $time, $duration) {
         $query = "SELECT `room`,`time`,`duration` FROM " . BOOKING_TABLE_NAME . " WHERE `date`=" . (int) $date . " AND room='" . $this->db->escape($room) . "'";
-        $bookings = $this->db->query($query);
+        $bookings = $this->db->get_results($query);
 
         foreach ($bookings as $booking) {
             $startTime = $booking->time;
@@ -150,9 +151,9 @@ class Booking {
         $endTime = strtotime("01-{$month}-{$year}+1 month");
 
         if($current_user->roles[0] == 'administrator'){
-            $query = "SELECT id FROM ".BOOKING_TABLE_NAME." WHERE data>={$startDate} AND date<{$endDate} ORDER BY date ASC, time ASC";
+            $query = "SELECT id FROM ".BOOKING_TABLE_NAME." WHERE date>={$startDate} AND date<{$endTime} ORDER BY date ASC, time ASC";
         } else {
-            $query = "SELECT id FROM ".BOOKING_TABLE_NAME." WHERE userId={$current_user->ID} data>={$startDate} AND date<{$endDate} ORDER BY date ASC, time ASC";
+            $query = "SELECT id FROM ".BOOKING_TABLE_NAME." WHERE userId={$current_user->ID} AND date>={$startDate} AND date<{$endTime} ORDER BY date ASC, time ASC";
         }
         $results = $wpdb->get_results($query);
         return $results;

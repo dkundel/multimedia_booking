@@ -22,36 +22,49 @@
                     <h3 id="overlay_headline">Create new booking</h3>
                 </div>
                 <div class="modal-body">
-                    <div id="booking_message" class="alert alert-block alert-error" style="display: none;">
-                      <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
-                      <h4 class="alert-heading">An error occured!</h4>
-                      <span>Please fill all fields!</span>
-                    </div>
                     <form class="well form-vertical">
                         <fieldset>
                             <div class="controls">
-                                <label class="control-label" for="roomField">Room</label><select id="roomField"></select>
-                                <label class="control-label" for="eventField">Event</label><input id="eventField" type="text">
-                                <label class="control-label" for="dateField">Date</label><input id="dateField" type="text">
-                                <label class="control-label" for="timeField">Start Time (HH:MM)</label>
-                                <form class="form-inline">
-                                    <fieldset>
-                                        <div class="controls">
-                                            <select class="span1" id="timeHour"></select>
-                                            <select class="span1" id="timeMinute"></select>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                                <label class="control-label" for="durationField">Duration (HH:MM)</label>
-                                <form class="form-inline">
-                                    <fieldset>
-                                        <div class="controls">
-                                            <select class="span1" id="durationHour"></select>
-                                            <select class="span1" id="durationMinute"></select>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                                <label class="control-label" for="descriptionField">Description</label><textarea id="descriptionField" rows="5"></textarea>
+                                <div id="roomContainer" class="control-group">
+                                    <label class="control-label" for="roomField">Room</label><select id="roomField"></select>
+                                    <span class="help-inline" style="display: none;">Please select a room!</span>
+                                </div>
+                                <div id="eventContainer" class="control-group">
+                                    <label class="control-label" for="eventField">Event</label><input id="eventField" type="text">
+                                    <span class="help-inline" style="display: none;">Please name the event!</span>
+                                </div>
+                                <div id="dateContainer" class="control-group">
+                                    <label class="control-label" for="dateField">Date</label><input id="dateField" type="text">
+                                    <span class="help-inline" style="display: none;">Please choose a date!</span>
+                                </div>
+                                <div id="timeContainer" class="control-group">
+                                    <label class="control-label" for="timeField">Start Time (HH:MM)</label>
+                                    <form class="form-inline">
+                                        <fieldset>
+                                            <div class="controls">
+                                                <select class="span1" id="timeHour"></select>
+                                                <select class="span1" id="timeMinute"></select>
+                                                <span class="help-inline" style="display: none;">Please state the start time!</span>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div id="durationContainer" class="control-group">
+                                    <label class="control-label" for="durationField">Duration (HH:MM)</label>
+                                    <form class="form-inline">
+                                        <fieldset>
+                                            <div class="controls">
+                                                <select class="span1" id="durationHour"></select>
+                                                <select class="span1" id="durationMinute"></select>
+                                                <span class="help-inline" style="display: none;">Please state the duration!</span>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div id="descriptionContainer" class="control-group">
+                                    <label class="control-label" for="descriptionField">Description</label><textarea id="descriptionField" rows="5"></textarea>
+                                    <span class="help-inline" style="display: none;">Please enter a description!</span>
+                                </div>
                             </div>
                         </fieldset>
                     </form>
@@ -62,7 +75,7 @@
                     <a id="saveChanges" href="#" class="btn btn-success" data-bookingId="-1">Save Changes</a>
                 </div>
             </div>
-            <div id="main">
+            <div id="main_booking">
                 <div id="messagefield">
                     <div id="alert_success" class="alert alert-block alert-success" style="display: none;">
                       <a class="close" data-dismiss="alert" href="#"><i class="icon-remove"></i></a>
