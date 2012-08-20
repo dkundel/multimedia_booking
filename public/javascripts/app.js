@@ -48,8 +48,6 @@
 		// fills the select fields for the duration field
 		fillDurationSlots(true, true);
 
-		console.error("1sttry");
-
 		// sets event listeners
 		$("#durationHour").change(updateDurations);
 		$("#day1_more").click(function(){$(".day1").each(function(){$(this).toggle("slow");});});
@@ -61,8 +59,6 @@
 		$(".prevMonth").click(showPrevMonth);
 		$(".nextMonth").click(showNextMonth);
 		$(window.parent).bind('hashchange', handleHashChange);
-
-		console.error("secondtry");
 
 		// update the location hash to fetch the current events
 		updateLocationHash();
@@ -402,11 +398,6 @@
 		$("#descriptionContainer").removeClass("error");
 		$("#descriptionContainer span").hide();
 
-
-
-
-
-
 		if($("#saveChanges").attr("data-bookingId") != "-1"){
 			$("#deleteBookingButton").show();
 		} else {
@@ -436,15 +427,17 @@
 	/**
 	*	handles the response of the create function
 	*/
-	function showResponseCreate(response){
+	function showResponseCreate(responseStr){
 
-		if(response.indexOf("[[400]]")){
+		var response = JSON.parse(responseStr);
+
+		if(response.type == 400){
 			$("#alert_success h4").html("Booking created!");
-			$("#alert_success span").html("Your booking has been created! Enjoy...");
+			$("#alert_success span").html(response.message);
 			$("#alert_success").show();
-		} else if(response.indexOf("[[500]]")) {
+		} else if(response.type == 500) {
 			$("#alert_error").show();
-			$("#message_error span").html(response);
+			$("#message_error span").html(response.message);
 		}
 
 		$("#overlayBooking").modal("hide");
@@ -551,17 +544,15 @@
  	/**
  	*	handles the response of the deleteBooking function
  	*/
-	function handleDelete(data){
-		var dataStr = JSON.parse(data);
+	function handleDelete(dataStr){
+		var data = JSON.parse(dataStr);
 
-		console.error(dataStr);
-
-		if(!dataStr.indexOf("[[400]]")){
+		if(data.type == 400){
 			$("#alert_success h4").html("Booking deleted!");
-			$("#alert_success span").html("Your booking has been deleted...");
+			$("#alert_success span").html(data.message);
 			$("#alert_success").show();
-		} else if(!dataStr.indexOf("[[500]]")){
-			$("#alert_error span").html(dataStr);
+		} else if(data.type == 500){
+			$("#alert_error span").html(data.message);
 			$("#alert_error").show();
 		}
 
