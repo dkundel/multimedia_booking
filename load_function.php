@@ -37,11 +37,13 @@ function mb_deleteBooking() {
         $booking->delete();
     } catch (Exception $e) {
         if ($e->getMessage()) {
-            echo json_encode('[[500]]'.$e->getMessage());
+            $response = array('type' => 500, 'message' => $e->getMessage());
+            echo json_encode($response);
             exit;
         }
     }
-    echo json_encode('[[400]] Booking deleted');
+    $response = array('type' => 400, 'message' => 'Your booking has been deleted...');
+    echo json_encode($response);
     exit;
 }
 
@@ -61,11 +63,13 @@ function mb_updateBooking() {
         $booking->update();
     } catch (Exception $e) {
         if ($e->getMessage()) {
-            echo json_encode("[[500]] ".$e->getMessage());
+            $response = array('type' => 500, 'message' => $e->getMessage());
+            echo json_encode($response);
             exit;
         }
     }
-    echo json_encode('[[400]] Booking updated');
+    $response = array('type' => 400, 'message' => 'Booking updated! Enjoy...');
+    echo json_encode($response);
     exit;
 }
 
