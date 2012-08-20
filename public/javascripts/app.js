@@ -8,7 +8,7 @@
 	var ROOMS = ['Movie Room','TV Lounge', 'Party Room', 'XBox'];
 
 	// defines the path to the php-file that handles the data requests (load_function.php in the plug-in directory)
-	var REQUEST_URL = "/github/wordpress/wp-content/plugins/multimedia_booking/load_function.php";
+	var REQUEST_URL = "/wp-content/plugins/multimedia_booking/load_function.php";
 	
 	// will be used to store the bookings of a month within the application
 	var BOOKINGS = {};
@@ -163,7 +163,7 @@
 	*/
 	function showNextMonth(){
 		CURRENTMONTH++;
-		if (CURRENTMONTH > 12) {
+		if (CURRENTMONTH >= 12) {
 			CURRENTYEAR++;
 			CURRENTMONTH -= 12;
 		}
