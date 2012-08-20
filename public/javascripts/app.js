@@ -148,17 +148,13 @@
 	*/ 
 	function showPrevMonth(){
 		CURRENTMONTH--;
-		if (CURRENTMONTH <= 0) {
+		if (CURRENTMONTH < 0) {
 			CURRENTYEAR--;
 			CURRENTMONTH += 12;
 		}
 
 		CURRENTDAYS = getDaysPerMonth(CURRENTMONTH, CURRENTYEAR);
 
-		/*$(".monthheadline").html(MONTHS[CURRENTMONTH] + " " + CURRENTYEAR);
-
-		fetchEventsMonth();
-		updateFrameSize();*/
 		updateLocationHash();
 	};
 
@@ -167,17 +163,13 @@
 	*/
 	function showNextMonth(){
 		CURRENTMONTH++;
-		if (CURRENTMONTH >= 12) {
+		if (CURRENTMONTH > 12) {
 			CURRENTYEAR++;
 			CURRENTMONTH -= 12;
 		}
 
 		CURRENTDAYS = getDaysPerMonth(CURRENTMONTH, CURRENTYEAR);
 
-		/*$(".monthheadline").html(MONTHS[CURRENTMONTH] + " " + CURRENTYEAR);
-
-		fetchEventsMonth();
-		updateFrameSize();*/
 		updateLocationHash();
 	};
 
