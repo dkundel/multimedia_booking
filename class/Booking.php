@@ -107,7 +107,7 @@ class Booking {
         foreach ($bookings as $booking) {
             $startTime = $booking->time;
             $endTime = $booking->time + $booking->duration;
-            if ($startTime < $time && $endTime > $time) {
+            if ($startTime <= $time && $endTime >= $time) {
                 return false;
             }
             if ($startTime < $time + $duration && $endTime > $time + $duration) {
