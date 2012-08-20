@@ -25,10 +25,12 @@ function my_jquery_enqueue() {
 
 ###2) Download the plug-in
 Download the plug-in folder and move it into wp_content/plugins of your Wordpress directory
-###3) Activate the Plug-In
+###3) Change path
+Go into the `multimedia_booking/public/javascripts/app.js` and change the path of `REQUEST_URL` to the correct path of `load_functions.php` in the main directory of the plug-in.
+###4) Activate the Plug-In
 Go in your administration panel and activate the Multimedia Booking Plug-In. 
 The necessary table for the bookings will be created then automatically.
-###4) Include the plug-in in your page
+###5) Include the plug-in in your page
 Just go into the editor of the page you would like to have the plug-in in and add the following shortcode:
 `[multimediaBooking]`
 Afterwards publish the page and you will be able to see the plug-in.
