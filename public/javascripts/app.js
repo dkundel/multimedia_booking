@@ -48,6 +48,8 @@
 		// fills the select fields for the duration field
 		fillDurationSlots(true, true);
 
+		console.error("1sttry");
+
 		// sets event listeners
 		$("#durationHour").change(updateDurations);
 		$("#day1_more").click(function(){$(".day1").each(function(){$(this).toggle("slow");});});
@@ -60,6 +62,8 @@
 		$(".nextMonth").click(showNextMonth);
 		$(window.parent).bind('hashchange', handleHashChange);
 
+		console.error("secondtry");
+
 		// update the location hash to fetch the current events
 		updateLocationHash();
 
@@ -70,7 +74,7 @@
 	* 	makes the iframe fit to the current size of the application
 	*/
 	function updateFrameSize(){
-		parent.$(window.parent).trigger("sizeFrameChanged");
+		parent.jQuery(window.parent).trigger("sizeFrameChanged");
 	};
 
 	function updateLocationHash(){
@@ -78,17 +82,14 @@
 	}
 
 	/**
-	*	
-	*
+	*	Handles the change of the location hash value of the browser 
+	*	and routes to the correct month
 	*/
 	function handleHashChange(){
 		var newHash = window.parent.location.hash;
 		if(newHash != ""){
-			console.error(newHash);
 			var newYear = newHash.substring(newHash.indexOf("/")+1, newHash.lastIndexOf("/"));
-			console.error(newYear);
 			var newMonth = newHash.substring(newHash.lastIndexOf("/")+1);
-			console.error(newMonth);
 
 			CURRENTMONTH = parseFloat(newMonth)-1;
 			CURRENTYEAR = parseFloat(newYear);
@@ -357,7 +358,6 @@
 	*	requests the bookings of the currently logged in user
 	*/
 	function bookingsBelongingUser(){
-		console.error("bla");
 		$.post(REQUEST_URL + '?function=getUserBookings', {'month': MONTHS[CURRENTMONTH], 'year': CURRENTYEAR}, function(data){ enableEdit(data);});
 	};
 
@@ -376,13 +376,10 @@
 
 		//var data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32];
 		//var bookingId;
-		console.error("foooo ");
 
 		for(var i=0; i<data.length; i++){
-			//console.error(data[i]);
 
 			bookingId = parseFloat(data[i].id);
-			console.error(bookingId);
 			var $editLink = $("<a href=\"javascript:void(0);\" alt=\"Edit..\" data-bookingId=\"" + bookingId + "\">Edit..</a>").click(showEditOverlay);
 			$(".booking_"+bookingId.toString()+" > td.edit_booking").html($editLink);
 		}
@@ -440,7 +437,6 @@
 	*	handles the response of the create function
 	*/
 	function showResponseCreate(response){
-		console.error(response);
 
 		if(response.indexOf("[[400]]")){
 			$("#alert_success h4").html("Booking created!");
@@ -464,7 +460,6 @@
 
 		$("#saveChanges").attr("data-bookingId", bookingId);
 
-		console.error($("#saveChanges").attr("data-bookingId"));
 
 		var idx = $(".booking_" + bookingId.toString()).attr("data-index");
 
